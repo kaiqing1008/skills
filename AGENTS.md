@@ -21,4 +21,4 @@
 - Request: Remove sensitive information and use git-secrets before every future push.
 - Replaced personal paths, corporate SSO details, company policy, and internal expense type IDs with placeholders.
 - Installed official git-secrets and added a versioned pre-push hook with credential and repository privacy rules.
-- Prepared history cleanup, including anonymous commit identity; remote history replacement requires user confirmation.
+- Prepared a plan to redact old history and replace personal commit identity with the GitHub username and privacy email. Automatic approval rejected local history rewriting pending explicit user consent; neither history rewriting nor remote push has been performed.
