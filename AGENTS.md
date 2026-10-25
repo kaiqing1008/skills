@@ -11,3 +11,14 @@
 - Request: Create README.md for the Skills repository.
 - Deliverable: README.md covering both Skills, setup, usage examples, environment requirements, repository structure, and maintenance.
 - Validation: Checked local Markdown links and whitespace before committing and pushing to origin/main.
+
+## Push rules
+- Before every push, use git-secrets to scan tracked files, the index, all reachable history, and commit metadata. Stop on findings or scanner failure; never bypass the hook.
+- Keep personal paths, enterprise login URLs, internal configuration, invoices, and credentials out of published content.
+- Configure core.hooksPath=.githooks after cloning.
+
+## 2026-10-25 — ChatGPT — Sensitive information cleanup
+- Request: Remove sensitive information and use git-secrets before every future push.
+- Replaced personal paths, corporate SSO details, company policy, and internal expense type IDs with placeholders.
+- Installed official git-secrets and added a versioned pre-push hook with credential and repository privacy rules.
+- Prepared history cleanup, including anonymous commit identity; remote history replacement requires user confirmation.

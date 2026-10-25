@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+root=$(git rev-parse --show-toplevel)
+cd "$root"
+sh "$root/.githooks/configure-secrets"
+echo "Checking tracked files and all reachable commit history with git-secrets..." >&2
+git secrets --scan
+git secrets --scan --cached
+git secrets --scan-history
+# Include commit authors and messages, which --scan-history does not inspect.
+git log --all --format=fuller | git secrets --scan -
+echo "git-secrets checks passed." >&2

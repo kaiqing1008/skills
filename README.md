@@ -57,3 +57,16 @@ skills/
 ## 维护方式
 
 每个技能使用独立目录，在 `SKILL.md` 中维护适用场景、前置条件、操作步骤和核对标准。修订直接更新原文件，通过 Git 保存版本历史，并在 `AGENTS.md` 中记录请求、产出和负责的 AI 平台。
+
+## 推送前敏感信息检查
+
+使用 [git-secrets](https://github.com/awslabs/git-secrets) 扫描常见凭据及本仓库的隐私信息规则。安装后，在克隆的仓库根目录执行：
+
+```bash
+git config core.hooksPath .githooks
+sh .githooks/configure-secrets
+```
+
+启用后，每次 `git push` 前自动检查已跟踪文件、暂存区、全部可达提交历史，以及提交作者和说明；发现匹配或缺少扫描工具时阻止推送。扫描规则随仓库保存在 `.githooks/secrets-patterns`。
+
+发布前还需人工检查业务信息。使用占位符表示本地路径、企业登录入口和内部系统配置；发票原件、个人身份信息、密码和令牌应保留在仓库之外。规则扫描无法识别所有敏感信息。
